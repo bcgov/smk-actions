@@ -289,9 +289,9 @@ runs:
           # --------------------------------------------------
           ./gwa-cli-linux init $gwaSwitch \
             --api-version=1 \
-            --namespace=$GWA_NAMESPACE \
-            --client-id=$GWA_CLIENTID \
-            --client-secret=$GWA_TOKEN
+            --namespace $GWA_NAMESPACE \
+            --client-id $GWA_CLIENTID \
+            --client-secret $GWA_TOKEN
 
           # create the gwa config
           # --------------------------------------------------
