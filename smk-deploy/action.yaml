@@ -48,7 +48,7 @@ runs:
         echo git repo ${{ github.repository }}
         repo=$(python3 $GITHUB_ACTION_PATH/getRepo.py =${{ github.repository }})
         echo repo is $repo
-        echo ::set-output name=REPONAME::${repo}
+        echo "REPONAME=${repo}" >> $GITHUB_OUTPUT
 
     - name: 'Get github user email'
       id: getGithubEmail
@@ -59,7 +59,7 @@ runs:
         EMAIL=$(curl -H "Accept: application/vnd.github.v3+json" \
                 -H "Authorization: token ${{ inputs.GHCR_TOKEN }}" \
                 https://api.github.com/users/${{ inputs.GHCR_USER }}| jq '.email')
-        echo ::set-output name=EMAIL::${EMAIL}
+        echo "EMAIL=${EMAIL}" >> $GITHUB_OUTPUT
     
     - name: 'Get docker image registry'
       id: getDockerRegistry
@@ -71,7 +71,7 @@ runs:
         # needs to be lower case
         IMAGE_REGISTRY=$(echo "$IMAGE_REGISTRY" | tr '[:upper:]' '[:lower:]')
         echo IMAGE_REGISTRY $IMAGE_REGISTRY
-        echo ::set-output name=IMAGE_REGISTRY::${IMAGE_REGISTRY}
+        echo "IMAGE_REGISTRY::${IMAGE_REGISTRY}" >> $GITHUB_OUTPUT
 
     - name: 'Get docker image tag'
       id: getDockerImageTag
@@ -81,7 +81,7 @@ runs:
         CONFMAPIMAGETAG=current_image_tag
         echo image name $IMAGE_TAG_CONFMAP_NAME
         IMAGE_TAG=$(oc get configmap $IMAGE_TAG_CONFMAP_NAME  -o json | jq .data.$CONFMAPIMAGETAG)
-        echo ::set-output name=DOCKER_VERSION_TAG::${IMAGE_TAG}
+        echo "DOCKER_VERSION_TAG=${IMAGE_TAG}" >> $GITHUB_OUTPUT
         echo image tag $IMAGE_TAG
 
     - name: 'Get issue url'
@@ -105,7 +105,7 @@ runs:
         fi
 
         echo ISSUE_URL $ISSUE_URL
-        echo ::set-output name=ISSUE_URL::${ISSUE_URL}
+        echo "ISSUE_URL=${ISSUE_URL}" >> $GITHUB_OUTPUT 
 
     - name: 'Get openshift namespace to deploy to and login'
       id: getOcNamespaceAndLogin
@@ -119,7 +119,7 @@ runs:
         # ENVTAG=prd if inputs.OPENSHIFT_TOKEN_PROD has been set
         ENVTAG=$(python3 $GITHUB_ACTION_PATH/isEnvSet.py ${{ inputs.OPENSHIFT_TOKEN_PROD }})
         # retrieve with ${{ steps.getOcNamespaceAndLogin.outputs.ENVTAG }}
-        echo ::set-output name=ENVTAG::${ENVTAG}
+        echo "ENVTAG=${ENVTAG}" >> $GITHUB_OUTPUT
 
         # get the namespace that aligns with tag above
         OC_NAMESPACE_NAMES_CONFIG_MAP=namespaces-cm
@@ -357,7 +357,7 @@ runs:
           export SERVICES
           VANITY_URL=$(getUrl)
           echo vanity url $VANITY_URL
-          echo ::set-output name=VANITY_URL::${VANITY_URL}
+          echo "VANITY_URL=${VANITY_URL}" >> $GITHUB_OUTPUT
         else
           echo not running for prod atm
         fi
@@ -383,7 +383,7 @@ runs:
             --header "Accept: application/vnd.github.v3+json" \
             --data-raw "$ISSUE_BODY"
           
-          echo ::set-output name=ISSUE_URL::${ISSUE_URL}
+          echo "ISSUE_URL=${ISSUE_URL}" >> $GITHUB_OUTPUT
         else
           echo not running for prod atm
         fi
