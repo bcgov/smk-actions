@@ -36,10 +36,10 @@ runs:
         TAGS="${IMAGE}:${DATESTAMP}"
         LATEST="${IMAGE}:latest"
         
-        echo ::set-output name=DOCKER_VERSION_TAG::${TAGS}
-        echo ::set-output name=DOCKER_LATEST_TAG::${LATEST}
-        echo ::set-output name=TIMESTAMPTAG::${DATESTAMP}
-        echo ::set-output name=REPO::${REPO}
+        echo "DOCKER_VERSION_TAG=${TAGS}" >> $GITHUB_OUTPUT
+        echo "DOCKER_LATEST_TAG=${LATEST}" >> $GITHUB_OUTPUT
+        echo "TIMESTAMPTAG=${DATESTAMP}" >> $GITHUB_OUTPUT
+        echo "REPO=${REPO}" >> $GITHUB_OUTPUT
 
         echo event name is $GITHUB_EVENT_NAME
         echo  $DEBUG_DEPLOY      shell: bash
