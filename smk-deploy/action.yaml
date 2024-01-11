@@ -71,7 +71,7 @@ runs:
         # needs to be lower case
         IMAGE_REGISTRY=$(echo "$IMAGE_REGISTRY" | tr '[:upper:]' '[:lower:]')
         echo IMAGE_REGISTRY $IMAGE_REGISTRY
-        echo "IMAGE_REGISTRY::${IMAGE_REGISTRY}" >> $GITHUB_OUTPUT
+        echo "IMAGE_REGISTRY=${IMAGE_REGISTRY}" >> $GITHUB_OUTPUT
 
     - name: 'Get docker image tag'
       id: getDockerImageTag
