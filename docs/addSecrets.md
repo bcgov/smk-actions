@@ -63,6 +63,6 @@ It may take a few deploy attempts to shake out issues. When a deploy fails, use 
 
 # Create a Horizontal Pod Autoscaler
 
-It is recommended to create a Horizontal Pod Autoscaler to more efficiently cope with high demand. Log into OpenShift and find a previously created HPA to use as reference. Create a new HPA referencing the DeploymentConfig created for your SMK app.
+It is recommended to create a Horizontal Pod Autoscaler to more efficiently cope with high demand. Log into OpenShift and find a previously created HPA to use as reference. Create a new HPA referencing the Deployment created for your SMK app.
 
 [***Back to summary***](./summary.md)
