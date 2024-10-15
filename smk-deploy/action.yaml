@@ -182,7 +182,7 @@ runs:
            --set app_image_pull_secret_params.registry=${{ steps.getDockerRegistry.outputs.IMAGE_REGISTRY }}
 
         # verify / report on the image tag that was deployed
-        IMAGE_DEPLOYED=$(oc get dc ${{ steps.getRepo.outputs.REPONAME }}-dc -o json | jq '.spec.template.spec.containers[0].image' | tr -d '"' )
+        IMAGE_DEPLOYED=$(oc get deployment ${{ steps.getRepo.outputs.REPONAME }}-dp -o json | jq '.spec.template.spec.containers[0].image' | tr -d '"' )
         echo IMAGE_DEPLOYED $IMAGE_DEPLOYED
         IMAGE_DEPLOYED_TAG=$(echo ${IMAGE_DEPLOYED} | cut -d':' -f2)
         echo IMAGE_DEPLOYED_TAG $IMAGE_DEPLOYED_TAG
