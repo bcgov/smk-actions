@@ -239,8 +239,8 @@ runs:
         GWA_VERSION=v2.0.15
         GWA_CLI_LINK=https://github.com/bcgov/gwa-cli/releases/download/${GWA_VERSION}/gwa_Linux_x86_64.tgz
         curl -L -O $GWA_CLI_LINK
-        unzip -p gwa_Linux_x86_64.tgz > gwa-cli-linux
-        chmod +x gwa-cli-linux
+        tar -xf gwa_Linux_x86_64.tgz
+        chmod +x gwa
 
     - name: Configure Kong Route
       id: kongconf
@@ -287,7 +287,7 @@ runs:
 
           # init the gwa config
           # --------------------------------------------------
-          ./gwa-cli-linux init $gwaSwitch \
+          ./gwa init $gwaSwitch \
             --api-version=1 \
             --namespace $GWA_NAMESPACE \
             --client-id $GWA_CLIENTID \
@@ -306,7 +306,7 @@ runs:
 
           # publish the gwa config
           # --------------------------------------------------
-          ./gwa-cli-linux pg gwa_config.yaml
+          ./gwa pg gwa_config.yaml
 
           # verify the url and output it
           # --------------------------------------------------
