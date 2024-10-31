@@ -12,12 +12,12 @@ openshift.  creates a docker image, uploads to github packages.
 * GHCR_USER             github user who has a personal access token configured
                         for access to the repos packages
 * GHCR_TOKEN            the personal access token for the user above
-* DOCKER_REGISTRY       the path to the docker registry (docker.pkg.github.com)
+* DOCKER_REGISTRY       the path to the docker registry (ghcr.io)
 
 ## Output Parameters
 
 * Docker version tag        ${{ steps.calculateImageTag.outputs.DOCKER_VERSION_TAG }}
-  example: (docker.pkg.github.com/frantarkenton/smk-fap-fcb/smk-fap-fcb:20210123-0244)
+  example: (ghcr.io/frantarkenton/smk-fap-fcb/smk-fap-fcb:20210123-0244)
 * timestamp                 ${{ steps.calculateImageTag.outputs.TIMESTAMPTAG }}
 * repo name                 ${{ steps.calculateImageTag.outputs.REPO }} 
   (example: smk-fap-fcb )
