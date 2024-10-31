@@ -52,7 +52,7 @@ Dev deploys will perform the following steps:
 * Extract the github repo name from the 'github.repository' parameter
     and make available `${{ steps.getRepo.outputs.REPONAME }}`
 * Get the email address associated with the input `GHCR_USER`
-* Calculate the Github container registry path (example... `docker.pkg.github.com/bcgov/smk-fap-fcb/smk-fap-fcb`)
+* Calculate the Github container registry path (example... `ghcr.io/bcgov/smk-fap-fcb/smk-fap-fcb`)
 * Extract the image tag from the configmap `$REPONAME-imagetag-cm` (example: `20210122-0059` )
 * Extract the issue url that was populated into the dev namespace config map.  (this should be changed, see this
   step for notes)

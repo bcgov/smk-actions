@@ -29,7 +29,6 @@ runs:
         echo REPO $REPO
 
         DATESTAMP=$(date +%Y%m%d-%H%M)
-        #REGISTRY="docker.pkg.github.com"
         REGISTRY=${{ inputs.DOCKER_REGISTRY }}
         repolowercase=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
         IMAGE="${REGISTRY}/$repolowercase/$REPO"
@@ -95,8 +94,6 @@ runs:
         echo GITHUBOWNERREPO $GITHUBOWNERREPO
         echo GITHHUBREPO $GITHHUBREPO
         echo DOCKER_REPO $DOCKER_REPO
-
-        #DOCKER_IMAGE_PATH=docker.pkg.github.com/$GITHUBOWNER-REPO/$GITHHUBREPO:
 
         echo ${{ inputs.GHCR_TOKEN }} | docker login https://${{ inputs.DOCKER_REGISTRY }} -u ${{ inputs.GHCR_USER }} --password-stdin
         docker build -t $DOCKER_REPO .

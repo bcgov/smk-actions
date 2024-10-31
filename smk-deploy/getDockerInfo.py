@@ -23,4 +23,4 @@ class test:
 
     def populateArgs(self):
         repoName = 'franTarkenton/smk-fap-fcp-comp'
-        registry = 'docker.pkg.github.com'
+        registry = 'ghcr.io'
