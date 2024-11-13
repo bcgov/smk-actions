@@ -18,6 +18,10 @@ To add the required files to your repository basically copy everything
 from the directory **smk-publish-app** in this repository, to your smk
 app repository.
 
+After copying, some placeholders will need to be updated:
+
+* In .github/workflows/build-deploy-dev.yaml, replace `<REPLACE-WITH-REPOSITORY-NAME>` with the name of your SMK repository, for example: `smk-mynewapp`.
+
 After this is complete your repository should look similar to this:
 
 ```
