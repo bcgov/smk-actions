@@ -7,15 +7,14 @@ This doc assumes you have downloaded the [SMK CLI](https://github.com/bcgov/smk-
 you may have is how can I share this application.
 
 There are a lot of different ways this could be accomplished including:
-1. Using [Github pages](https://guides.github.com/features/pages/) to host / publish your application
 1. Host on an existing Web Server your organization may have
-1. Have DataBC Host your application in openshift.
+1. Host in BC Government's OpenShift environment
 
-This document is focused on the last option, host / publish using openshift.
+This document is focused on the last option, host / publish using OpenShift.
 
 # Overview
 
-In order to deploy a new SMK application to openshift  you will need to complete
+In order to deploy a new SMK application to OpenShift you will need to complete
 the following steps.
 
 1. Published code to github
@@ -27,7 +26,7 @@ will trigger the actions, which at a high level will:
 
 1. Build a new docker image and store it in the packages associated with the repository.
 1. Create initial OpenShift configuration objects for the SMK app the first time the deploy runs 
-1. Deploy the image to a dev openshift namespace
+1. Deploy the image to a dev OpenShift namespace
 1. Comment on the github issue associated with the pull request, include the dev url
 
 If the pull request is merged with the master branch that will trigger a prod deployment.
@@ -42,7 +41,7 @@ If the pull request is merged with the master branch that will trigger a prod de
 
 Administrative docs include info on:
 * creating a github personal access token
-* how to init a net new openshift namespace
+* how to init a net new OpenShift namespace
 
 * [Administrative Documentation](./administration_guide.md)
 
