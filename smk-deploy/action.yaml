@@ -35,7 +35,7 @@ runs:
         echo ----- OC-LOGIN -----
         # get oc client
         curl https://downloads-openshift-console.apps.silver.devops.gov.bc.ca/amd64/linux/oc.tar -o oc.tar
-        tar -xvf oc.tar
+        tar -xf oc.tar
         curdir=$(pwd)
         PATH=$curdir:$PATH
         oc login --token=${{ inputs.OPENSHIFT_TOKEN_DEV }} --server=${{ inputs.OPENSHIFT_SERVER_URL }}
@@ -236,11 +236,11 @@ runs:
 
         # Grabbing the GWA command line tool
         #----------------------------------------------------
-        GWA_VERSION=v1.2.0
-        GWA_CLI_LINK=https://github.com/bcgov/gwa-cli/releases/download/${GWA_VERSION}/gwa_${GWA_VERSION}_linux_x64.zip
+        GWA_VERSION=v3.0.7
+        GWA_CLI_LINK=https://github.com/bcgov/gwa-cli/releases/download/${GWA_VERSION}/gwa_Linux_x86_64.tgz
         curl -L -O $GWA_CLI_LINK
-        unzip -p gwa_${GWA_VERSION}_linux_x64.zip > gwa-cli-linux
-        chmod +x gwa-cli-linux
+        tar -xf gwa_Linux_x86_64.tgz
+        chmod +x gwa
 
     - name: Configure Kong Route
       id: kongconf
@@ -287,9 +287,7 @@ runs:
 
           # init the gwa config
           # --------------------------------------------------
-          ./gwa-cli-linux init $gwaSwitch \
-            --api-version=1 \
-            --namespace $GWA_NAMESPACE \
+          ./gwa login \
             --client-id $GWA_CLIENTID \
             --client-secret $GWA_TOKEN
 
@@ -306,7 +304,7 @@ runs:
 
           # publish the gwa config
           # --------------------------------------------------
-          ./gwa-cli-linux pg gwa_config.yaml
+          ./gwa publish gwa_config.yaml
 
           # verify the url and output it
           # --------------------------------------------------
